@@ -27,8 +27,11 @@ alias run_packager="adb -s 513049e6 reverse tcp:8081 tcp:8081 && npm start"
 # silently use Android Studio JRE instead of installed a new one
 export PATH=$PATH:'/c/Program Files/Android/Android Studio/jre/bin'
 
-# reactotron need this masterpice to run
-alias reactotron="adb reverse tcp:9090 tcp:9090"
+# connect your device to your app, and make reactotron need this masterpiece to run
+alias startdeveloprn="adb reverse tcp:9090 tcp:9090 && adb reverse tcp:8081 tcp:8081"
+
+# update current JS into your app
+alias bundle_app="react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"alias gitlist='git stash list | while IFS=: read STASH ETC; do echo "$STASH: $ETC"; git diff --stat $STASH~..$STASH --; done'
 
 # at last you can make you apk and release your awesome app to the world
-alias bundle_app="react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"alias gitlist='git stash list | while IFS=: read STASH ETC; do echo "$STASH: $ETC"; git diff --stat $STASH~..$STASH --; done'
+alias releasernapp="./gradlew --console plain assembleRelease"
